@@ -1,0 +1,127 @@
+<view class="page">
+  <view class="hero-card">
+    <text class="hero-badge">健康管家联系人登记</text>
+    <text class="hero-title">建立居民、健康管家与医生的服务关系</text>
+  </view>
+
+  <view class="panel">
+    <text class="panel-title panel-title--center">服务关系登记</text>
+
+    <view class="identity-block">
+      <text class="block-title">居民身份</text>
+      <button class="scan-button" data-target="resident" bindtap="handleScanIdentity">扫码识别居民</button>
+      <input
+        class="field-input"
+        value="{{residentCodeInput}}"
+        data-field="residentCodeInput"
+        placeholder="居民身份码（扫码后自动填充）"
+        placeholder-style="color:#94A3B8;font-size:26rpx;"
+        bindinput="handleCodeInput"
+      />
+      <button
+        class="ghost-button"
+        data-target="resident"
+        data-field="residentCodeInput"
+        bindtap="handleResolveIdentity"
+      >
+        识别居民身份码
+      </button>
+      <view wx:if="{{residentProfile}}" class="identity-card">
+        <text class="identity-name">{{residentProfile.name}}</text>
+        <text class="identity-meta">{{residentProfile.community}}</text>
+        <text class="identity-meta">{{residentProfile.address}}</text>
+      </view>
+    </view>
+
+    <view class="identity-block">
+      <text class="block-title">健康管家身份</text>
+      <button class="scan-button" data-target="manager" bindtap="handleScanIdentity">扫码识别健康管家</button>
+      <input
+        class="field-input"
+        value="{{managerCodeInput}}"
+        data-field="managerCodeInput"
+        placeholder="健康管家身份码（扫码后自动填充）"
+        placeholder-style="color:#94A3B8;font-size:26rpx;"
+        bindinput="handleCodeInput"
+      />
+      <button
+        class="ghost-button"
+        data-target="manager"
+        data-field="managerCodeInput"
+        bindtap="handleResolveIdentity"
+      >
+        识别健康管家身份码
+      </button>
+      <view wx:if="{{managerProfile}}" class="identity-card">
+        <text class="identity-name">{{managerProfile.name}}</text>
+        <text class="identity-meta">{{managerProfile.organization}}</text>
+        <text class="identity-meta">{{managerProfile.phone}}</text>
+      </view>
+    </view>
+
+    <view class="identity-block">
+      <text class="block-title">医院医生协同</text>
+      <button class="scan-button" data-target="doctor" bindtap="handleScanIdentity">扫码识别医生</button>
+      <input
+        class="field-input"
+        value="{{doctorCodeInput}}"
+        data-field="doctorCodeInput"
+        placeholder="医院医生身份码（可选）"
+        placeholder-style="color:#94A3B8;font-size:26rpx;"
+        bindinput="handleCodeInput"
+      />
+      <button
+        class="ghost-button"
+        data-target="doctor"
+        data-field="doctorCodeInput"
+        bindtap="handleResolveIdentity"
+      >
+        识别医生身份码
+      </button>
+      <view wx:if="{{doctorProfile}}" class="identity-card">
+        <text class="identity-name">{{doctorProfile.name}}</text>
+        <text class="identity-meta">{{doctorProfile.organization}}</text>
+        <text class="identity-meta">{{doctorProfile.title}}</text>
+      </view>
+    </view>
+
+    <view class="field">
+      <text class="field-label">服务范围</text>
+      <input
+        class="field-input"
+        value="{{serviceScope}}"
+        placeholder="例如：独居老人巡护、慢病用药随访"
+        placeholder-style="color:#94A3B8;font-size:26rpx;"
+        bindinput="handleScopeInput"
+      />
+    </view>
+
+    <view class="field">
+      <text class="field-label">补充说明</text>
+      <textarea
+        class="field-textarea"
+        value="{{notes}}"
+        maxlength="120"
+        placeholder="补充录入居民健康状况、上门频次或协同备注。"
+        placeholder-style="color:#94A3B8;font-size:26rpx;"
+        bindinput="handleNotesInput"
+      ></textarea>
+    </view>
+
+    <button class="submit-button" bindtap="handleSaveRelation">保存联系人关系</button>
+  </view>
+
+  <view class="panel">
+    <text class="panel-title panel-title--center">已建立的联系人关系</text>
+    <block wx:for="{{relationCards}}" wx:key="residentCode">
+      <view class="relation-card">
+        <text class="relation-name">{{item.residentName}} · {{item.serviceScope}}</text>
+        <text class="relation-meta">居民社区：{{item.residentMeta}}</text>
+        <text class="relation-meta">健康管家：{{item.managerName}} / {{item.managerMeta}}</text>
+        <text class="relation-meta">协同医生：{{item.doctorName}}</text>
+        <text class="relation-meta">备注：{{item.notes}}</text>
+        <text class="relation-meta">更新时间：{{item.updatedAt}}</text>
+      </view>
+    </block>
+  </view>
+</view>

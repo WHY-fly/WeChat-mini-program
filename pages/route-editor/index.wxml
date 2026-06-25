@@ -1,0 +1,54 @@
+<view class="page">
+  <view class="hero-card">
+    <text class="hero-badge">线路设置</text>
+    <text class="hero-title">更新健康管家联络线路</text>
+  </view>
+
+  <view class="form-card">
+    <view class="field">
+      <text class="field-label">线路名称</text>
+      <input
+        class="field-input"
+        value="{{label}}"
+        placeholder="例如：汶川县阳光社区健康管家中心"
+        placeholder-style="color:#94A3B8;font-size:26rpx;"
+        bindinput="handleLabelInput"
+      />
+    </view>
+
+    <view class="field">
+      <text class="field-label">联系电话</text>
+      <input
+        class="field-input"
+        type="number"
+        maxlength="20"
+        value="{{phone}}"
+        placeholder="请输入可直接拨打的号码"
+        placeholder-style="color:#94A3B8;font-size:26rpx;"
+        bindinput="handlePhoneInput"
+      />
+    </view>
+
+    <view class="field">
+      <text class="field-label">线路说明</text>
+      <textarea
+        class="field-textarea"
+        maxlength="120"
+        value="{{description}}"
+        placeholder="例如：直接主线路，优先响应山区老人和突发不适求助。"
+        placeholder-style="color:#94A3B8;font-size:26rpx;"
+        bindinput="handleDescriptionInput"
+      ></textarea>
+    </view>
+
+    <view wx:if="{{canSetPrimary}}" class="switch-card">
+      <view class="switch-copy">
+        <text class="switch-title">设为首接主线</text>
+        <text class="switch-desc">保存后，首页倒计时和“立即拨打”将优先使用这条线路。</text>
+      </view>
+      <switch checked="{{isPrimary}}" color="#0f9f7f" bindchange="handlePrimaryChange" />
+    </view>
+
+    <button class="save-button" bindtap="handleSave">{{saveButtonText}}</button>
+  </view>
+</view>

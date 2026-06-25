@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/index",
+    "pages/supply/index",
+    "pages/contacts/index",
+    "pages/profile/index",
+    "pages/route-editor/index"
+  ],
+  "tabBar": {
+    "color": "#64748B",
+    "selectedColor": "#0F9F7F",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/login/index",
+        "text": "身份"
+      },
+      {
+        "pagePath": "pages/supply/index",
+        "text": "投送"
+      },
+      {
+        "pagePath": "pages/contacts/index",
+        "text": "联系"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarTitleText": "云端医护管家",
+    "navigationBarBackgroundColor": "#0C2238",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F6F8FC",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

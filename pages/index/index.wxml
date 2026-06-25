@@ -1,0 +1,123 @@
+<view class="page">
+  <view class="aurora aurora--top"></view>
+  <view class="aurora aurora--bottom"></view>
+
+  <view class="hero-card">
+    <text class="hero-badge">{{missionBadge}}</text>
+    <text class="hero-title">{{appTitle}}</text>
+    <text class="hero-subtitle">{{appSubtitle}}</text>
+
+    <view class="scene-tag-row">
+      <block wx:for="{{sceneTags}}" wx:key="*this">
+        <text class="scene-tag">{{item}}</text>
+      </block>
+    </view>
+  </view>
+
+  <view class="dashboard-card">
+    <text class="panel-title panel-title--center">身份与协同状态</text>
+    <text class="session-title">{{sessionCard.title}}</text>
+    <text class="session-subtitle">{{sessionCard.subtitle}}</text>
+    <view class="session-tag-row">
+      <block wx:for="{{sessionCard.tags}}" wx:key="*this">
+        <text class="session-tag">{{item}}</text>
+      </block>
+    </view>
+  </view>
+
+  <view class="countdown-card countdown-card--{{statusTone}}">
+    <view class="countdown-top">
+      <view class="countdown-copy">
+        <text class="section-eyebrow">紧急救援</text>
+        <text class="countdown-title">10 秒自动呼救待命窗口</text>
+      </view>
+      <view class="countdown-badge">{{countdownDisplay}}</view>
+    </view>
+
+    <view class="progress-track">
+      <view
+        class="progress-fill progress-fill--{{statusTone}}"
+        style="width: {{countdownProgress}}%;"
+      ></view>
+    </view>
+
+    <text class="status-text">{{statusText}}</text>
+
+    <view class="route-grid">
+      <view class="route-card">
+        <text class="route-label">首接线路</text>
+        <text class="route-value">{{autoCallTarget}}</text>
+        <text class="route-meta">{{autoCallPhoneDisplay}}</text>
+      </view>
+      <view class="route-card route-card--alert">
+        <text class="route-label">兜底联动</text>
+        <text class="route-value">{{fallbackTarget}}</text>
+        <text class="route-meta">主线路未接通时继续呼救</text>
+      </view>
+    </view>
+
+    <button class="primary-button" bindtap="handlePrimaryCall">立即拨打健康管家</button>
+    <button class="secondary-button" bindtap="toggleAutoCall">{{actionButtonText}}</button>
+
+    <view class="quick-actions">
+      <button class="ghost-button" data-key="community" bindtap="handleQuickCall">
+        社区协同点
+      </button>
+      <button
+        class="ghost-button ghost-button--alert"
+        data-key="emergency120"
+        bindtap="handleQuickCall"
+      >
+        直接联动 120
+      </button>
+    </view>
+  </view>
+
+  <view class="panel">
+    <text class="panel-title panel-title--center">物资投送概览</text>
+    <view class="supply-preview-card">
+      <text class="preview-title">{{supplyPreview.stationName}}</text>
+      <text class="preview-desc">{{supplyPreview.eta}}</text>
+      <text class="preview-desc">推荐落点：{{supplyPreview.dropPoint}}</text>
+      <text class="preview-desc">{{supplyPreview.taskLabel}}</text>
+      <button class="outline-button" bindtap="switchTabPage" data-url="/pages/supply/index">
+        查看投送详情
+      </button>
+    </view>
+  </view>
+
+  <view class="panel">
+    <text class="panel-title panel-title--center">救援联动流程</text>
+    <block wx:for="{{rescueStages}}" wx:key="title">
+      <view class="flow-item">
+        <view class="flow-index">{{index + 1}}</view>
+        <view class="flow-content">
+          <text class="flow-title">{{item.title}}</text>
+          <text class="flow-desc">{{item.description}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="panel">
+    <text class="panel-title panel-title--center">紧急线路</text>
+    <block wx:for="{{contacts}}" wx:key="key">
+      <view class="contact-item {{item.isPrimary ? 'contact-item--primary' : ''}}">
+        <view class="contact-main">
+          <view class="contact-top">
+            <text class="contact-name">{{item.label}}</text>
+            <text wx:if="{{item.isPrimary}}" class="contact-tag">首接主线</text>
+            <text wx:if="{{!item.configured}}" class="contact-tag contact-tag--muted">
+              号码待确认
+            </text>
+          </view>
+          <text class="contact-phone">{{item.phone}}</text>
+          <text class="contact-desc">{{item.description}}</text>
+        </view>
+        <button class="contact-call" data-key="{{item.key}}" bindtap="handleContactAction">
+          {{item.actionText}}
+        </button>
+      </view>
+    </block>
+  </view>
+</view>

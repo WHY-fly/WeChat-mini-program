@@ -1,0 +1,97 @@
+<view class="page">
+  <view class="hero-card">
+    <text class="hero-badge">无人机物资投送</text>
+    <text class="hero-title">就近投送点、物资核验与用药指导</text>
+  </view>
+
+  <view class="panel">
+    <text class="panel-title panel-title--center">投送概览</text>
+    <view class="summary-grid">
+      <view class="summary-card">
+        <text class="summary-label">当前身份</text>
+        <text class="summary-value">
+          {{currentSession ? currentSession.roleLabel + ' · ' + currentSession.name : '未登录'}}
+        </text>
+      </view>
+      <view class="summary-card">
+        <text class="summary-label">就近投送点</text>
+        <text class="summary-value">{{station.name}}</text>
+      </view>
+    </view>
+
+    <view class="station-card">
+      <text class="station-name">{{station.name}}</text>
+      <text class="station-meta">{{station.address}}</text>
+      <text class="station-meta">{{station.range}}</text>
+      <text class="station-meta">{{station.eta}}</text>
+      <text class="station-meta">推荐落点：{{station.dropPoint}}</text>
+      <text class="station-meta">核验方式：{{station.verifyMethod}}</text>
+    </view>
+  </view>
+
+  <view class="panel">
+    <text class="panel-title panel-title--center">居民物资流程</text>
+    <block wx:for="{{deliverySteps}}" wx:key="title">
+      <view class="flow-item">
+        <view class="flow-index">{{index + 1}}</view>
+        <view class="flow-copy">
+          <text class="flow-title">{{item.title}}</text>
+          <text class="flow-desc">{{item.description}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="panel">
+    <text class="panel-title panel-title--center">当前投送任务</text>
+
+    <view class="verify-tools">
+      <button class="scan-button" bindtap="handleScanVerify">扫码核验物资</button>
+      <input
+        class="verify-input"
+        value="{{verifyCodeInput}}"
+        placeholder="输入物资包二维码编号或备用核验码"
+        placeholder-style="color:#94A3B8;font-size:26rpx;"
+        bindinput="handleVerifyInput"
+      />
+      <button class="ghost-button" bindtap="handleVerifyByInput">确认核验</button>
+    </view>
+
+    <block wx:if="{{tasks.length}}">
+      <block wx:for="{{tasks}}" wx:key="packageCode">
+        <view class="task-card">
+          <view class="task-head">
+            <text class="task-name">{{item.packageName}}</text>
+            <text class="task-status task-status--{{item.statusClass}}">
+              {{item.status}}
+            </text>
+          </view>
+          <text class="task-meta">居民：{{item.resident.name}}</text>
+          <text class="task-meta">预计到达：{{item.eta}}</text>
+          <text class="task-meta">落点：{{item.dropPoint}}</text>
+          <text class="task-meta">核验方式：{{item.verifyMethod}}</text>
+          <text class="task-meta">备用核验码：{{item.backupCode}}</text>
+
+          <view class="item-list">
+            <text class="subheading">投送物资</text>
+            <block wx:for="{{item.items}}" wx:key="*this">
+              <text class="item-chip">{{item}}</text>
+            </block>
+          </view>
+
+          <view class="guidance-box">
+            <text class="subheading">药品使用指导</text>
+            <block wx:for="{{item.guidance}}" wx:key="*this">
+              <text class="guidance-item">{{index + 1}}. {{item}}</text>
+            </block>
+          </view>
+        </view>
+      </block>
+    </block>
+
+    <view wx:else class="empty-card">
+      <text class="empty-title">当前没有匹配到投送任务</text>
+      <text class="empty-desc">完成身份登录后，会自动关联就近投送点与居民对应物资任务。</text>
+    </view>
+  </view>
+</view>

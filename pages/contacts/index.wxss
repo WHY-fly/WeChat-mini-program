@@ -1,0 +1,157 @@
+.page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 180rpx;
+  box-sizing: border-box;
+  background:
+    linear-gradient(180deg, #0c2238 0%, #173b57 26%, #eef4f9 26%, #f6f9fc 100%);
+}
+
+.hero-card,
+.panel {
+  border-radius: 32rpx;
+  box-shadow: 0 20rpx 60rpx rgba(15, 23, 42, 0.08);
+}
+
+.hero-card {
+  padding: 36rpx 30rpx 34rpx;
+  text-align: center;
+  background: linear-gradient(145deg, rgba(9, 30, 48, 0.98) 0%, rgba(23, 73, 103, 0.9) 100%);
+  color: #f8fafc;
+}
+
+.hero-badge,
+.panel-title,
+.block-title,
+.field-label,
+.submit-button,
+.relation-name {
+  font-weight: 700;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.12);
+  color: #d7f7f1;
+  font-size: 22rpx;
+}
+
+.hero-title,
+.hero-subtitle,
+.panel-title,
+.block-title,
+.field-label,
+.identity-meta,
+.relation-meta {
+  display: block;
+}
+
+.hero-title {
+  margin-top: 24rpx;
+  font-size: 48rpx;
+  line-height: 1.25;
+}
+
+.hero-subtitle {
+  margin-top: 16rpx;
+  font-size: 26rpx;
+  line-height: 1.75;
+  color: rgba(240, 249, 255, 0.88);
+}
+
+.panel {
+  margin-top: 24rpx;
+  padding: 28rpx 26rpx 32rpx;
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.panel-title {
+  font-size: 30rpx;
+  color: #0f172a;
+}
+
+.panel-title--center {
+  text-align: center;
+}
+
+.identity-block,
+.field,
+.relation-card {
+  margin-top: 24rpx;
+}
+
+.block-title,
+.field-label {
+  font-size: 26rpx;
+  color: #0f172a;
+}
+
+.scan-button,
+.ghost-button,
+.submit-button {
+  margin-top: 14rpx;
+  border-radius: 999rpx;
+  font-size: 28rpx;
+}
+
+.scan-button,
+.submit-button {
+  color: #ffffff;
+  background: linear-gradient(135deg, #0f9f7f 0%, #0b6b68 100%);
+}
+
+.ghost-button {
+  color: #12314a;
+  background: #e7eef7;
+}
+
+.field-input,
+.field-textarea {
+  width: 100%;
+  margin-top: 12rpx;
+  padding: 0 22rpx;
+  box-sizing: border-box;
+  border-radius: 24rpx;
+  background: #f5f8fb;
+  color: #0f172a;
+  font-size: 28rpx;
+}
+
+.field-input {
+  height: 88rpx;
+  line-height: 88rpx;
+}
+
+.field-textarea {
+  padding: 24rpx 22rpx;
+  min-height: 170rpx;
+}
+
+.identity-card,
+.relation-card {
+  padding: 22rpx 20rpx;
+  border-radius: 24rpx;
+  background: #f5f8fb;
+}
+
+.identity-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.identity-meta,
+.relation-meta {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.72;
+  color: #526071;
+}
+
+.relation-name {
+  display: block;
+  font-size: 28rpx;
+  color: #0f172a;
+}
